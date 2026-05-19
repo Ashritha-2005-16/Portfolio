@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ashritha Chandragiri – Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0d0d0d;
+    --cream: #f5f0e8;
+    --gold: #c9a84c;
+    --rust: #b5451b;
+    --muted: #6b6560;
+    --card: #ffffff;
+    --border: #e2dbd0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 18px 60px;
+    background: rgba(245,240,232,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px; letter-spacing: 1px;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    text-decoration: none; color: var(--muted);
+    font-size: 13px; letter-spacing: 0.5px; font-weight: 500;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--rust); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+    overflow: hidden;
+  }
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 80px 60px 80px 80px;
+    animation: fadeUp 1s ease both;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--rust); font-weight: 500;
+    border: 1px solid var(--rust); padding: 4px 14px; border-radius: 20px;
+    margin-bottom: 28px; width: fit-content;
+  }
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(42px, 5vw, 68px);
+    line-height: 1.08;
+    margin-bottom: 12px;
+  }
+  .hero-name em { color: var(--gold); font-style: italic; }
+  .hero-title {
+    font-size: 18px; color: var(--muted); font-weight: 300;
+    margin-bottom: 28px; letter-spacing: 0.3px;
+  }
+  .hero-summary {
+    font-size: 15px; line-height: 1.75; color: #444;
+    max-width: 460px; margin-bottom: 40px;
+  }
+  .hero-cta {
+    display: flex; gap: 16px; flex-wrap: wrap;
+  }
+  .btn-primary {
+    background: var(--ink); color: var(--cream);
+    padding: 13px 28px; border-radius: 4px;
+    font-size: 13px; font-weight: 500; letter-spacing: 0.5px;
+    text-decoration: none; text-transform: uppercase;
+    transition: background 0.3s, transform 0.2s;
+  }
+  .btn-primary:hover { background: var(--rust); transform: translateY(-2px); }
+  .btn-secondary {
+    border: 1px solid var(--ink); color: var(--ink);
+    padding: 13px 28px; border-radius: 4px;
+    font-size: 13px; font-weight: 500; letter-spacing: 0.5px;
+    text-decoration: none; text-transform: uppercase;
+    transition: all 0.3s;
+  }
+  .btn-secondary:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+  .hero-right {
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    background: linear-gradient(135deg, #e8dfc8 0%, #d4c9a8 100%);
+    overflow: hidden;
+  }
+  .hero-graphic {
+    position: relative; z-index: 2;
+    text-align: center; animation: fadeUp 1.2s ease 0.2s both;
+  }
+  .avatar-ring {
+    width: 240px; height: 240px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold), var(--rust));
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 24px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+  }
+  .avatar-inner {
+    width: 220px; height: 220px; border-radius: 50%;
+    background: var(--cream);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 72px; color: var(--gold);
+  }
+  .hero-stats {
+    display: flex; gap: 30px; justify-content: center;
+    flex-wrap: wrap;
+  }
+  .stat { text-align: center; }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 28px; color: var(--ink); }
+  .stat-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+
+  .hero-deco {
+    position: absolute; width: 350px; height: 350px;
+    border-radius: 50%; border: 1px solid rgba(201,168,76,0.2);
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+  }
+  .hero-deco:nth-child(2) { width: 500px; height: 500px; border-color: rgba(201,168,76,0.1); }
+
+  /* ── SECTIONS ── */
+  section { padding: 90px 80px; }
+  .section-label {
+    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--gold); font-weight: 500; margin-bottom: 10px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 3vw, 42px); margin-bottom: 50px;
+  }
+  .section-title span { color: var(--rust); font-style: italic; }
+
+  /* ── SKILLS ── */
+  #skills { background: var(--ink); color: var(--cream); }
+  #skills .section-label { color: var(--gold); }
+  #skills .section-title { color: var(--cream); }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+  }
+  .skill-card {
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px; padding: 28px;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .skill-card:hover { border-color: var(--gold); transform: translateY(-4px); }
+  .skill-icon { font-size: 28px; margin-bottom: 14px; }
+  .skill-cat { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+  .skill-list { font-size: 14px; color: #ccc; line-height: 1.8; }
+
+  /* ── PROJECTS ── */
+  #projects { background: white; }
+  .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+  .project-card {
+    border: 1px solid var(--border); border-radius: 10px;
+    overflow: hidden; transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .project-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
+  .project-header {
+    padding: 30px; background: linear-gradient(135deg, #1a1a2e, #16213e);
+    color: white; position: relative; overflow: hidden;
+  }
+  .project-header::after {
+    content: ''; position: absolute; right: -20px; top: -20px;
+    width: 100px; height: 100px; border-radius: 50%;
+    background: rgba(201,168,76,0.15);
+  }
+  .project-year { font-size: 11px; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
+  .project-title { font-family: 'Playfair Display', serif; font-size: 20px; line-height: 1.3; }
+  .project-body { padding: 24px 30px; }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+  .tag {
+    background: #f5f0e8; color: var(--rust); border: 1px solid #e2dbd0;
+    padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 500;
+  }
+  .project-desc { font-size: 14px; color: #555; line-height: 1.75; }
+  .project-bullets { list-style: none; margin-top: 12px; }
+  .project-bullets li {
+    font-size: 13px; color: #555; padding: 4px 0;
+    padding-left: 16px; position: relative; line-height: 1.6;
+  }
+  .project-bullets li::before {
+    content: '→'; position: absolute; left: 0; color: var(--gold); font-size: 12px;
+  }
+
+  /* ── EDUCATION ── */
+  #education { background: var(--cream); }
+  .edu-timeline { position: relative; padding-left: 30px; }
+  .edu-timeline::before {
+    content: ''; position: absolute; left: 0; top: 8px; bottom: 0;
+    width: 1px; background: var(--border);
+  }
+  .edu-item {
+    position: relative; margin-bottom: 40px;
+    opacity: 0; animation: fadeUp 0.7s ease forwards;
+  }
+  .edu-item:nth-child(1) { animation-delay: 0.1s; }
+  .edu-item:nth-child(2) { animation-delay: 0.25s; }
+  .edu-item:nth-child(3) { animation-delay: 0.4s; }
+  .edu-dot {
+    position: absolute; left: -36px; top: 6px;
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--gold); border: 2px solid white;
+    box-shadow: 0 0 0 2px var(--gold);
+  }
+  .edu-year { font-size: 11px; letter-spacing: 2px; color: var(--gold); text-transform: uppercase; margin-bottom: 6px; }
+  .edu-degree { font-family: 'Playfair Display', serif; font-size: 18px; margin-bottom: 4px; }
+  .edu-school { font-size: 14px; color: var(--muted); margin-bottom: 4px; }
+  .edu-score { font-size: 13px; color: var(--rust); font-weight: 500; }
+
+  /* ── CERTS ── */
+  #certifications { background: white; }
+  .certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+  .cert-card {
+    border: 1px solid var(--border); border-radius: 8px;
+    padding: 22px; text-align: center;
+    transition: all 0.3s;
+  }
+  .cert-card:hover { border-color: var(--gold); background: #fffdf6; transform: translateY(-3px); }
+  .cert-icon { font-size: 30px; margin-bottom: 12px; }
+  .cert-name { font-size: 13px; font-weight: 500; margin-bottom: 6px; line-height: 1.4; }
+  .cert-org { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--ink); color: var(--cream); text-align: center; }
+  #contact .section-title { color: var(--cream); }
+  #contact .section-label { color: var(--gold); }
+  .contact-intro { font-size: 16px; color: #aaa; max-width: 500px; margin: 0 auto 40px; line-height: 1.75; }
+  .contact-links { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+  .contact-link {
+    display: flex; align-items: center; gap: 10px;
+    border: 1px solid rgba(255,255,255,0.15); border-radius: 6px;
+    padding: 14px 22px; color: var(--cream); text-decoration: none;
+    font-size: 13px; letter-spacing: 0.5px; transition: all 0.3s;
+  }
+  .contact-link:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-3px); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #080808; color: #555;
+    text-align: center; padding: 20px;
+    font-size: 12px; letter-spacing: 1px;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { padding: 100px 24px 60px; }
+    section { padding: 60px 24px; }
+    .projects-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">A<span>.</span>Chandragiri</div>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <div class="hero-tag">Open to Work · 2026 Batch</div>
+    <h1 class="hero-name">Ashritha<br><em>Chandragiri</em></h1>
+    <p class="hero-title">Data Science · Computer Vision · Python</p>
+    <p class="hero-summary">
+      Computer Science undergraduate specialising in Data Science with hands-on experience in computer vision, cryptography, and data-driven systems. Passionate about translating complex data into actionable insights and building impactful solutions.
+    </p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn-primary">Get in Touch</a>
+      <a href="#projects" class="btn-secondary">View Projects</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-deco"></div>
+    <div class="hero-deco"></div>
+    <div class="hero-graphic">
+      <div class="avatar-ring">
+        <div class="avatar-inner">A</div>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-num">8.82</div>
+          <div class="stat-label">CGPA</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">2</div>
+          <div class="stat-label">Projects</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">4</div>
+          <div class="stat-label">Certifications</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">What I Know</div>
+  <h2 class="section-title">Technical <span>Skills</span></h2>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-icon">🐍</div>
+      <div class="skill-cat">Programming</div>
+      <div class="skill-list">Python<br>SQL<br>JavaScript</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🌐</div>
+      <div class="skill-cat">Web Technologies</div>
+      <div class="skill-list">HTML5<br>CSS3<br>JavaScript</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">👁️</div>
+      <div class="skill-cat">Computer Vision</div>
+      <div class="skill-list">OpenCV<br>Hand Tracking<br>Real-time Detection</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🔐</div>
+      <div class="skill-cat">Cryptography</div>
+      <div class="skill-list">Elliptic Curve Cryptography<br>Chaotic Cryptography<br>Secure Transmission</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🗄️</div>
+      <div class="skill-cat">Database</div>
+      <div class="skill-list">SQL<br>Data Modelling<br>Query Optimisation</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">💡</div>
+      <div class="skill-cat">Core Competencies</div>
+      <div class="skill-list">Problem Solving<br>Team Collaboration<br>Analytical Thinking</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">What I've Built</div>
+  <h2 class="section-title">Featured <span>Projects</span></h2>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-year">2025 – 2026</div>
+        <div class="project-title">Air Canvas & Sign Language Detection System</div>
+      </div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="tag">Python</span>
+          <span class="tag">OpenCV</span>
+          <span class="tag">Computer Vision</span>
+          <span class="tag">Real-time</span>
+        </div>
+        <ul class="project-bullets">
+          <li>Developed a real-time gesture-based drawing system using Python and OpenCV with live hand tracking and sign language recognition</li>
+          <li>Optimised the hand landmark detection pipeline, reducing latency and improving system accuracy through iterative debugging</li>
+          <li>Applied modular software design and SDLC best practices ensuring code maintainability, scalability, and reliability</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-year">2024 – 2025</div>
+        <div class="project-title">Secure Image Transmission using ECC & Chaotic Cryptography</div>
+      </div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="tag">Python</span>
+          <span class="tag">Cryptography</span>
+          <span class="tag">ECC</span>
+          <span class="tag">Security</span>
+        </div>
+        <ul class="project-bullets">
+          <li>Architected a secure image transmission system using Elliptic Curve Cryptography (ECC) to guarantee data confidentiality and integrity</li>
+          <li>Integrated chaotic cryptography techniques alongside ECC to strengthen encryption robustness against attacks</li>
+          <li>Optimised encryption and decryption algorithms, reducing processing overhead and improving end-to-end transmission efficiency</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-label">Academic Background</div>
+  <h2 class="section-title">My <span>Education</span></h2>
+  <div class="edu-timeline">
+
+    <div class="edu-item">
+      <div class="edu-dot"></div>
+      <div class="edu-year">2022 – 2026</div>
+      <div class="edu-degree">B.Tech – Computer Science (Data Science)</div>
+      <div class="edu-school">Malla Reddy Engineering College for Women, Hyderabad</div>
+      <div class="edu-score">CGPA: 8.82 / 10</div>
+    </div>
+
+    <div class="edu-item">
+      <div class="edu-dot"></div>
+      <div class="edu-year">2020 – 2022</div>
+      <div class="edu-degree">Intermediate – MPC (Mathematics, Physics, Chemistry)</div>
+      <div class="edu-school">MIMS Junior College</div>
+      <div class="edu-score">Percentage: 74%</div>
+    </div>
+
+    <div class="edu-item">
+      <div class="edu-dot"></div>
+      <div class="edu-year">2019 – 2020</div>
+      <div class="edu-degree">Secondary School Certificate (SSC)</div>
+      <div class="edu-school">Sri Ushodaya High School</div>
+      <div class="edu-score">CGPA: 9.3 / 10</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-label">Credentials</div>
+  <h2 class="section-title">Certifi<span>cations</span></h2>
+  <div class="certs-grid">
+    <div class="cert-card">
+      <div class="cert-icon">🐍</div>
+      <div class="cert-name">Python Programming</div>
+      <div class="cert-org">Cisco Networking Academy</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">🤖</div>
+      <div class="cert-name">Career Essentials in Generative AI</div>
+      <div class="cert-org">Microsoft & LinkedIn</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">☁️</div>
+      <div class="cert-name">Oracle Certified Foundations Associate</div>
+      <div class="cert-org">Oracle</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">🇬🇧</div>
+      <div class="cert-name">English Proficiency (C1)</div>
+      <div class="cert-org">Cambridge Assessment English</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">Let's Connect</div>
+  <h2 class="section-title">Get In <span>Touch</span></h2>
+  <p class="contact-intro">
+    I'm actively looking for Data Science, Python, and AI-related opportunities. Feel free to reach out for roles, collaborations, or just a conversation!
+  </p>
+  <div class="contact-links">
+    <a href="mailto:chandragiriashritha05@gmail.com" class="contact-link">
+      <span>✉️</span> chandragiriashritha05@gmail.com
+    </a>
+    <a href="tel:+917989621229" class="contact-link">
+      <span>📱</span> +91-7989621229
+    </a>
+    <a href="https://linkedin.com/in/ashritha-chandragiri-3208402b7" target="_blank" class="contact-link">
+      <span>💼</span> LinkedIn Profile
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Ashritha Chandragiri &nbsp;·&nbsp; Hyderabad, India &nbsp;·&nbsp; Designed with ♥</p>
+</footer>
+
+</body>
+</html>
